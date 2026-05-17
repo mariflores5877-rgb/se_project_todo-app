@@ -7,32 +7,46 @@ class Todo {
     this._templateElement = document.querySelector(todoSelector);
   }
 
+  _setEventListeners() {
+    this.todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
+    this.todoCheckboxElement =
+      this._todoElement.querySelector(".todo__completed");
+    this._todoDeleteBtn.addEventListener("click", () => {
+      this._todoElement.remove();
+    });
+    this._todoCheckboxElement.addEventListener("change", () => {
+      this.completed = !this.completed;
+    });
+  }
+
   getView() {
-    const todoElement = this._templateElement.content
+    this._todoElement = this._templateElement.content
       .querySelector(".todo")
       .cloneNode(true);
 
-    const todoNameElement = todoElement.querySelector(".todo__name");
-    const todoCheckboxElement = todoElement.querySelector(".todo__completed");
-    const todoLabel = todoElement.querySelector(".todo__label");
-    const todoDate = todoElement.querySelector(".todo__date");
-    const todoDeleteBtn = todoElement.querySelector(".todo__delete-btn");
+    this._todoNameElement = this._todoElement.querySelector(".todo__name");
+    this._todoCheckboxElement =
+      this._todoElement.querySelector(".todo__completed");
+    this._todoLabel = this._todoElement.querySelector(".todo__label");
+    this._todoDate = this._todoElement.querySelector(".todo__date");
+    this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
-    todoNameElement.textContent = this.name;
-    todoCheckboxElement.checked = this.completed;
+    this._todoNameElement.textContent = this.name;
+    // todoCheckboxElement.checked = this.completed;
 
-    return todoElement;
-  }
+    const dueDate = new Date(this.date);
+    if (!isNaN(dueDate)) {
+      this._todoDate.textContent = `Due: ${dueDate.toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })}`;
 
-  _setEventListeners() {
-    //Is there a problem with using todoElement
-    //  as the private method on line 32 & 34 when we
-    // already have _templateElement on line 11 ??
-    //Let's try it out
-    //
-    const todoDeleteBtn =
-      this._templateElement.querySelector(".todo__delete-btn");
-    const todoCheckboxElement =
-      this._templateElement.querySelector(".todo__completed");
+      this._setEventListeners();
+
+      return this._todoElement;
+    }
   }
 }
+
+export { Todo };
