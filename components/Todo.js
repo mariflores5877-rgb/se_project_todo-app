@@ -28,13 +28,15 @@ class Todo {
     this._todoCheckboxElement =
       this._todoElement.querySelector(".todo__completed");
     this._todoLabel = this._todoElement.querySelector(".todo__label");
+    this._todoCheckboxElement.id = `todo-${this.id}`;
+    this._todoLabel.setAttribute("for", `todo-${this.id}`);
     this._todoDate = this._todoElement.querySelector(".todo__date");
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
     this._todoNameElement.textContent = this.name;
     // todoCheckboxElement.checked = this.completed;
 
-    const dueDate = new Date(this.date);
+    const dueDate = this.date instanceof Date ? this.date : new Date(this.date);
     if (!isNaN(dueDate)) {
       this._todoDate.textContent = `Due: ${dueDate.toLocaleString("en-US", {
         year: "numeric",
@@ -43,7 +45,6 @@ class Todo {
       })}`;
 
       this._setEventListeners();
-
       return this._todoElement;
     }
   }
