@@ -1,17 +1,22 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+A dynamic, browser-based task management application built
+as part of the TripleTen Software Engineering program.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+This app renders todo items dynamically to the page using Object-Oriented Programming principles. Each todo
+is generated through a Todo class component that encapsulates its own logic and markup.
+The project uses ES module import/expoer syntax and a modular conponents/ folder structure to keep the codebase organized and scalable.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+Built with HTML5, CSS3, and JavaScript (ES6+). Key techniques include OOP class-based architecture,
+ES modules, and DOM manipulation. Version control is managed with Git and GitHub.
 
 ## Deployment
 
+S
 This project is deployed on GitHub Pages:
 
 - ADD LINK HERE
