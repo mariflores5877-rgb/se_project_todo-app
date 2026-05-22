@@ -15,6 +15,11 @@ formValidator.enableValidation();
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
+  modal.addEventListener("click", (evt) => {
+    if (evt.target === modal) {
+      closeModal(modal);
+    }
+  });
 };
 
 const closeModal = (modal) => {
@@ -70,6 +75,15 @@ addTodoButton.addEventListener("click", () => {
 addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
+
+const handleEscClose = (evt) => {
+  if (evt.key === "Escape") {
+    const openPopup = document.querySelector(".popup_visible");
+    if (openPopup) closeModal(openPopup);
+  }
+};
+
+document.addEventListener("keydown", handleEscClose);
 
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
