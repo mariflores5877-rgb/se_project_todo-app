@@ -26,8 +26,8 @@ const closeModal = (modal) => {
 };
 
 function renderTodo(item) {
-  const todo = generateTodo(item);
-  todosList.append(todo);
+  const todo = new Todo(item, "#todo-template");
+  todosList.append(todo.getView());
 }
 
 addTodoButton.addEventListener("click", () => {
