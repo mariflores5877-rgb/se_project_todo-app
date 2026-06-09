@@ -59,11 +59,6 @@ export class FormValidator {
 
   resetValidation() {
     this._formElement.reset();
-
-    const buttonElement = this._formElement.querySelector(
-      this._submitButtonSelector,
-    );
-    this._buttonElement.disabled = true;
-    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._toggleButtonState();
   }
 }
