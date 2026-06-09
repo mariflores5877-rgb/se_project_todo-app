@@ -12,14 +12,6 @@ const todosList = document.querySelector(".todos__list");
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
 
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-};
-
-const closeModal = (modal) => {
-  modal.classList.remove("popup_visible");
-};
-
 function renderTodo(item) {
   const todo = new Todo(item, "#todo-template");
   todosList.append(todo.getView());
