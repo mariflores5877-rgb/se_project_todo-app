@@ -5,7 +5,7 @@ import { FormValidator } from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopup.querySelector(".popup__form");
+const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
@@ -14,11 +14,6 @@ formValidator.enableValidation();
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
-  modal.addEventListener("click", (evt) => {
-    if (evt.target === modal) {
-      closeModal(modal);
-    }
-  });
 };
 
 const closeModal = (modal) => {
@@ -38,14 +33,22 @@ addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
 
-const handleEscClose = (evt) => {
+function handleEscape(evt) {
   if (evt.key === "Escape") {
-    const openPopup = document.querySelector(".popup_visible");
-    if (openPopup) closeModal(openPopup);
+    const openedPopup = document.querySelector(".modal_opened");
+    closeModal(openedPopup);
   }
-};
+}
 
-document.addEventListener("keydown", handleEscClose);
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscape);
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscape);
+}
 
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
