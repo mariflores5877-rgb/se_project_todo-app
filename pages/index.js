@@ -27,18 +27,18 @@ addTodoCloseBtn.addEventListener("click", () => {
 
 function handleEscape(evt) {
   if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal_opened");
+    const openedPopup = document.querySelector(".popup_visible");
     closeModal(openedPopup);
   }
 }
 
 function openModal(modal) {
-  modal.classList.add("modal_opened");
+  modal.classList.add("popup_visible");
   document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
-  modal.classList.remove("modal_opened");
+  modal.classList.remove("popup_visible");
   document.removeEventListener("keydown", handleEscape);
 }
 

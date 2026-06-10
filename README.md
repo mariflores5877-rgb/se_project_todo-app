@@ -16,7 +16,6 @@ ES modules, and DOM manipulation. Version control is managed with Git and GitHub
 
 ## Deployment
 
-S
 This project is deployed on GitHub Pages:
 
 - https://mariflores5877-rgb.github.io/se_project_todo-app/
