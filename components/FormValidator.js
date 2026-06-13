@@ -35,6 +35,9 @@ export class FormValidator {
   _toggleButtonState() {
     const hasInvalid = this._inputList.some((input) => !input.validity.valid);
     this._buttonElement.disabled = hasInvalid;
+    this._buttonElement.classList[hasInvalid ? "add" : "remove"](
+      this._inactiveButtonClass,
+    );
   }
   _setEventListeners() {
     this._inputList = Array.from(
