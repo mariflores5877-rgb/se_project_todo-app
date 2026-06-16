@@ -3,26 +3,35 @@ import { initialTodos, validationConfig } from "../utils/constants.js";
 import { Todo } from "../components/Todo.js";
 import { FormValidator } from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import TodoCounter from "../components/TodoCounter.js";
+import Section from "../components/Section.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
 const addTodoForm = document.forms["add-todo-form"];
-const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
 
+const section = new Section({
+  items: initialTodos,
+  renderer: renderTodo,
+  containerSelector: ".todos__list",
+});
+
+section.renderItems();
+
 function renderTodo(item) {
   const todo = new Todo(item, "#todo-template");
-  todosList.append(todo.getView());
+  section.addItem(todo.getView());
 }
 
 addTodoButton.addEventListener("click", () => {
-  openModal(addTodoPopup);
+  addTodoPopupForm.open();
 });
 
-const addTodoPopupForm = new PopupWithForm("#add-todo-form", (inputValues) => {
+const addTodoPopupForm = new PopupWithForm("#add-todo-popup", (inputValues) => {
   const name = inputValues.name;
   const dateInput = inputValues.date;
   const date = new Date(dateInput);
@@ -35,7 +44,3 @@ const addTodoPopupForm = new PopupWithForm("#add-todo-form", (inputValues) => {
 });
 
 addTodoPopupForm.setEventListeners();
-
-initialTodos.forEach((item) => {
-  renderTodo(item);
-});
