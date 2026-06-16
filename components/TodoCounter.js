@@ -1,8 +1,9 @@
 class TodoCounter {
   constructor(todos, selector) {
     this._element = document.querySelector(selector);
-    this._completed = todos.filter((item) => item.done).length;
+    this._completed = todos.filter((item) => item.completed).length;
     this._total = todos.length;
+    this._updateText();
   }
 
   updateCompleted = (increment) => {
