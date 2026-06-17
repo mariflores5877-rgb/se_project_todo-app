@@ -14,6 +14,8 @@ const todosList = document.querySelector(".todos__list");
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
 
+const todoCounter = new TodoCounter(initialTodos, ".counter");
+
 const section = new Section({
   items: initialTodos,
   renderer: renderTodo,
@@ -23,7 +25,17 @@ const section = new Section({
 section.renderItems();
 
 function renderTodo(item) {
-  const todo = new Todo(item, "#todo-template");
+  const todo = new Todo(
+    item,
+    "#todo-template",
+    (isCompleted) => {
+      TodoCounter.updateCompleted(isCompleted);
+    },
+    (isCompleted) => {
+      TodoCounter.updateTotal(false);
+      if (isCompleted) TodoCounter.updateCompleted(false);
+    },
+  );
   section.addItem(todo.getView());
 }
 
