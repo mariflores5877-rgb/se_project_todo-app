@@ -6,7 +6,7 @@ class Todo {
     this.id = data.id;
     this._templateElement = document.querySelector(todoSelector);
     this._handleCheck = handleCheck;
-    this.handleDelete = handleDelete;
+    this._handleDelete = handleDelete;
   }
 
   _setEventListeners() {
